@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name=rnase         # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=8        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=4G                 # memory per node (4G is default)
+#SBATCH --time=00:10:00          # total run time limit (HH:MM:SS)
+
+export GMX_MAXBACKUP=-1
+
+module purge
+module load intel/19.0/64/19.0.1.144
+
+BCH=../rnase_cubic
+gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
