@@ -338,12 +338,6 @@ gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 srun mdrun_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
-To run on only the cascade lake nodes, create an exclusion list of all the other nodes:
-
-```
-snodes | grep -v 'cascade\|HOSTNAMES' | cut -c 1-13 | tr -s '\n' ',' | tr -d '[:blank:]' > exclude.nodes
-```
-
 ## Perseus
 
 Perseus is a lage cluster composed of Intel Broadwell CPUs. It is mainly used for astrophysics research. Run these commands to build GROMACS on perseus:
