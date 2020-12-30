@@ -71,8 +71,6 @@ Traverse is composed of 46 IBM POWER9 nodes with 4 NVIDIA V100 GPUs per node. Ea
 
 ![smt-core](http://3s81si1s5ygj3mzby34dq6qf-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/ibm-hot-chips-power9-smt4-core.jpg)
 
-![nvlink](https://www.servethehome.com/wp-content/uploads/2018/03/Gigabyte-G190-G30-Server-NVIDIA-NVLink-Topology.jpg)
-
 ```
 $ ssh <YourNetID>@traverse.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
