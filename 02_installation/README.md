@@ -409,7 +409,7 @@ Gromacs can be built for GPU use on Adroit. Because it has four V100 GPUs, one c
 ```bash
 $ ssh <NetID>@adroit.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/adroit/adroit.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/adroit/adroit.sh
 # make modifications to adroit.sh if needed (e.g., choose a different version)
 $ bash adroit.sh | tee build.log
 ```
@@ -446,7 +446,7 @@ Adroit is a small cluster so the directions here produce a single-node version:
 $ ssh <NetID>@adroit.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
 $ mkdir cpu_version && cd cpu_version
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/adroit/adroit_cpu.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/adroit/adroit_cpu.sh
 # make modifications to adroit_cpu.sh if needed (e.g., choose a different version)
 $ bash adroit_cpu.sh | tee build.log
 ```
