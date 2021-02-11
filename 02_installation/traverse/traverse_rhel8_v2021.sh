@@ -52,10 +52,6 @@ make -j 10
 make check
 make install
 
-# two tests fail: #10 due to pinning and #42 which fails because
-# it tries to run it using six GPU tasks but we have only
-# four GPUs
-
 #############################################################
 # build mdrun_mpi (for multi-node jobs)
 #############################################################
