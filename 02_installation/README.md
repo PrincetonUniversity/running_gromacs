@@ -9,7 +9,7 @@ The code can be built by following these commands:
 ```
 $ ssh <YourNetID>@tigergpu.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/tigerGpu/tigerGpu.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/tigerGpu/tigerGpu.sh
 # make modifications to tigerGpu.sh if needed (e.g., choose a different version)
 $ bash tigerGpu.sh | tee build.log
 ```
@@ -74,7 +74,7 @@ Traverse is composed of 46 IBM POWER9 nodes with 4 NVIDIA V100 GPUs per node. Ea
 ```
 $ ssh <YourNetID>@traverse.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/traverse/traverse.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/traverse/traverse.sh
 # make modifications to traverse.sh if needed (e.g., choose a different version)
 $ bash traverse.sh | tee build.log
 ```
@@ -288,7 +288,7 @@ Della is good for single node jobs. You should not be running small jobs on Tige
 ```bash
 $ ssh <YourNetID>@della.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/della/della.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/della/della.sh
 # make modifications to della.sh if needed (e.g., choose a different version)
 $ bash della.sh | tee build.log
 ```
@@ -343,7 +343,7 @@ Perseus is a lage cluster composed of Intel Broadwell CPUs. It is mainly used fo
 ```bash
 $ ssh <YourNetID>@perseus.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/perseus/perseus.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/perseus/perseus.sh
 # make modifications to perseus.sh if needed (e.g., choose a different version)
 $ bash perseus.sh | tee build.log
 ```
@@ -356,7 +356,7 @@ If you have an account on Tiger then consider building only a GPU version:
 $ ssh <NetID>@tigercpu.princeton.edu
 $ cd </path/to/software/directory>  # e.g., cd ~/software
 $ mkdir cpu_version && cd cpu_version
-$ wget https://raw.githubusercontent.com/jdh4/running_gromacs/master/02_installation/tigerCpu/tigerCpu.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/tigerCpu/tigerCpu.sh
 # make modifications to tigercpu.sh if needed
 $ bash tigerCpu.sh | tee build.log
 ```
