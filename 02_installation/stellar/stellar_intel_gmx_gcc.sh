@@ -19,7 +19,7 @@ cd build_stage1
 #############################################################
 
 module purge
-module load fftw/gcc/3.3.9
+module load fftw/gcc/3.3.9 cmake/3.18.2
 
 OPTFLAGS="-Ofast -march=native -mtune=native -DNDEBUG"
 
