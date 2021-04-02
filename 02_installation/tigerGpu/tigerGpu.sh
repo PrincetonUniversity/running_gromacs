@@ -36,7 +36,7 @@ cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
-make -j 10
+make -j 4
 make check
 make install
 
@@ -60,7 +60,7 @@ cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
-make -j 10
+make -j 4
 source ../build_stage1/scripts/GMXRC
 tests/regressiontests-${version}/gmxtest.pl all
 make install
