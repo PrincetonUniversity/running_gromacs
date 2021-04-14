@@ -32,6 +32,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
 -DFFTWF_INCLUDE_DIR=/usr/local/fftw/gcc/3.3.9/include \
 -DFFTWF_LIBRARY=/usr/local/fftw/gcc/3.3.9/lib64/libfftw3f.so \
 -DGMX_GPU=OFF \
+-DGMX_OPENMP_MAX_THREADS=96 \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
@@ -58,6 +59,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
 -DFFTWF_INCLUDE_DIR=/usr/local/fftw/gcc/3.3.9/include \
 -DFFTWF_LIBRARY=/usr/local/fftw/gcc/3.3.9/lib64/libfftw3f.so \
 -DGMX_GPU=OFF \
+-DGMX_OPENMP_MAX_THREADS=96 \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
