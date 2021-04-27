@@ -24,5 +24,5 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
 make -j 10
-#make check
+#make check  (see https://gromacs.bioexcel.eu/t/gromacs-2021-1-fails-on-make-check-on-test-freeenergy-transformatob/1961)
 make install
