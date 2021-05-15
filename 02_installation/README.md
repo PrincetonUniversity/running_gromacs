@@ -2,6 +2,15 @@
 
 The installation procedure depends on the cluster.
 
+## Della-GPU
+
+```
+$ ssh <YourNetID>@della-gpu.princeton.edu
+$ cd software  # or another directory
+$ wget 
+$ bash | tee gmx.log
+```
+
 ## TigerGPU
 
 The code can be built by following these commands:
