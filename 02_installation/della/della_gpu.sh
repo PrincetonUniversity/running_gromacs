@@ -13,6 +13,7 @@ mkdir build && cd build
 module purge
 module load cmake/3.18.2
 module load openmpi/gcc/4.1.0
+module load cudatoolkit/11.3
 
 OPTFLAGS="-O3 -DNDEBUG"
 
