@@ -4,7 +4,7 @@ The installation procedure depends on the cluster.
 
 ## Della-GPU
 
-The GPU nodes on Della have AMD processors with AVX2 as the highest instruction set. Below is a build procedure:
+The GPU nodes on Della have AMD processors with AVX2 as the highest instruction set. The system version of GCC is 8.3.1. Below is a build procedure:
 
 ```
 $ ssh <YourNetID>@della-gpu.princeton.edu
