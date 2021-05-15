@@ -13,7 +13,7 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash della_gpu.sh | tee gmx.log
 ```
 
-As an alternative to the procedure above, you may consider using the [NVIDIA container](https://ngc.nvidia.com/catalog/containers/hpc:gromacs).
+The above procedure will create `gmx_gpu`. As an alternative to the procedure above, you may consider using the [NVIDIA container](https://ngc.nvidia.com/catalog/containers/hpc:gromacs).
 
 ## TigerGPU
 
