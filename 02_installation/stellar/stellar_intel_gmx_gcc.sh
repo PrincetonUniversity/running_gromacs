@@ -2,7 +2,7 @@
 #############################################################
 # set the version
 #############################################################
-version=2021.1
+version=2021.2
 
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-${version}.tar.gz
 tar -zxvf gromacs-${version}.tar.gz
@@ -23,6 +23,6 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
-make -j 10
-#make check  (see https://gromacs.bioexcel.eu/t/gromacs-2021-1-fails-on-make-check-on-test-freeenergy-transformatob/1961)
+make -j 32
+make check
 make install
