@@ -7,8 +7,8 @@ The installation procedure depends on the cluster.
 ```
 $ ssh <YourNetID>@della-gpu.princeton.edu
 $ cd software  # or another directory
-$ wget 
-$ bash | tee gmx.log
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/della/della_gpu.sh
+$ bash della_gpu.sh | tee gmx.log
 ```
 
 ## TigerGPU
