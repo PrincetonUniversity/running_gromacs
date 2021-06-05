@@ -13,7 +13,34 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash della_gpu.sh | tee gmx.log
 ```
 
-The above procedure will create `gmx_gpu`. As an alternative to the procedure above, you may consider using the [NVIDIA container](https://ngc.nvidia.com/catalog/containers/hpc:gromacs).
+The above procedure will create `gmx_gpu`.
+
+As an alternative to the procedure above, you may consider using the [NVIDIA container](https://ngc.nvidia.com/catalog/containers/hpc:gromacs):
+
+```
+$ singularity pull docker://nvcr.io/hpc/gromacs:2021
+```
+
+```
+#!/bin/bash
+#SBATCH --job-name=gmx           # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=1               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=12       # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=4G                 # memory per node (4G per cpu-core is default)
+#SBATCH --time=00:10:00          # total run time limit (HH:MM:SS)
+#SBATCH --gres=gpu:1             # number of gpus per node
+
+module purge
+SIF=$(pwd)/gromacs_2021.sif
+SINGULARITY="singularity run --nv -B ${PWD}:/host_pwd --pwd /host_pwd ${SIF}"
+
+BCH=./rnase_cubic
+${SINGULARITY} gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+${SINGULARITY} gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+```
+
+The above produces 461 ns/day.
 
 ## TigerGPU
 
