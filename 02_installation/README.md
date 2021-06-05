@@ -40,7 +40,13 @@ ${SINGULARITY} gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.
 ${SINGULARITY} gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
-The above produces 461 ns/day.
+The above produces 461 ns/day. `md.log` shows that the GPU was correctly found:
+
+```
+GPU info:
+    Number of GPUs detected: 1
+    #0: NVIDIA NVIDIA A100-PCIE-40GB, compute cap.: 8.0, ECC: yes, stat: compatible
+```
 
 ## TigerGPU
 
