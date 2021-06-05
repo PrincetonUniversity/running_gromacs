@@ -23,6 +23,8 @@ As an alternative to the procedure above, you may consider using the [NVIDIA con
 $ singularity pull docker://nvcr.io/hpc/gromacs:2021
 ```
 
+The container appears to be restricted to a single node. So you can you use up to 2 GPUs and 128 CPU-cores. You will need to conduct a scaling analysis to find the optimal numbers. However, one GPU and a few CPU-cores should give excellent performance for most systems.
+
 ```
 #!/bin/bash
 #SBATCH --job-name=gmx           # create a short name for your job
