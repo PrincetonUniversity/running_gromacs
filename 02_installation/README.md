@@ -471,7 +471,7 @@ srun mdrun_cpu_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 
 ## Adroit (GPU)
 
-Gromacs can be built for GPU use on Adroit. Because it has four V100 GPUs, one can run comparison tests against Traverse. Gromacs can be built by running the following commands:
+Gromacs can be built for the A100 GPU node of Adroit:
 
 ```bash
 $ ssh <NetID>@adroit.princeton.edu
@@ -490,14 +490,14 @@ Below is a sample Slurm script for single-node jobs:
 #SBATCH --ntasks=1               # total number of tasks across all nodes
 #SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem=4G                 # memory per node (4G per cpu-core is default)
-#SBATCH --gres=gpu:tesla_v100:1  # number of gpus per node
+#SBATCH --gres=gpu:1             # number of gpus per node
 #SBATCH --time=00:10:00          # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=all          # send email when job begins, ends and fails
 #SBATCH --mail-user=<YourNetID>@princeton.edu
+#SBATCH --constraint=a100
 
 module purge
-module load intel/19.0/64/19.0.1.144
-module load cudatoolkit/10.2
+module load cudatoolkit/11.4
 
 gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
