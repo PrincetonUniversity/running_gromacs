@@ -415,18 +415,6 @@ gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 srun mdrun_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
-## Perseus
-
-Perseus is a lage cluster composed of Intel Broadwell CPUs. It is mainly used for astrophysics research. Run these commands to build GROMACS on perseus:
-
-```bash
-$ ssh <YourNetID>@perseus.princeton.edu
-$ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/perseus/perseus.sh
-# make modifications to perseus.sh if needed (e.g., choose a different version)
-$ bash perseus.sh | tee build.log
-```
-
 ## TigerCPU
 
 If you have an account on Tiger then consider building only a GPU version:
@@ -544,10 +532,11 @@ Below is a sample Slurm script for single-node jobs:
 #SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
-module load intel/19.0/64/19.0.1.144
+module load openmpi/gcc/4.1.0
 
-gmx_cpu grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
-gmx_cpu mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+BCH=rnase_cubic
+gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+srun gmx_mpi mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
 One should find the optimal values of `ntasks` and `cpus-per-task`.
