@@ -4,6 +4,9 @@
 #############################################################
 version=2021.3
 
+#############################################################
+# you probably don't need to change anything below this line
+#############################################################
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-${version}.tar.gz
 tar -zxvf gromacs-${version}.tar.gz
 cd gromacs-${version}
