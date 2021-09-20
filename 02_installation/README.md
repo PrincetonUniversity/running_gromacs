@@ -535,8 +535,8 @@ module purge
 module load openmpi/gcc/4.1.0
 
 BCH=rnase_cubic
-gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
-srun gmx_mpi mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+gmx_mpi_cpu grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+srun gmx_mpi_cpu mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
 One should find the optimal values of `ntasks` and `cpus-per-task`.
