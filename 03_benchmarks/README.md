@@ -234,6 +234,34 @@ Memory Efficiency: 0.04% of 4.00 GB
 ```
 
 ```
+#!/bin/bash
+#SBATCH -N 1   # node count
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=7
+#SBATCH --gpus-per-node=4
+#SBATCH -t 24:00:00
+#SBATCH --exclusive
+
+module load openmpi
+module load intel
+module load cudatoolkit
+
+mol=memb_treh
+gmx=gmx_205gt
+ntmpi=$SLURM_NTASKS_PER_NODE
+ntomp=$SLURM_CPUS_PER_TASK
+opt="-cpt 1 -pin on -nb gpu -bonded gpu"
+
+export GMX_GPU_DD_COMMS=true
+export GMX_GPU_PME_PP_COMMS=true
+export GMX_FORCE_UPDATE_DEFAULT_GPU=true
+
+# sim
+$gmx grompp -f npt.mdp -c ../../run_files/${mol}_eq6.gro -t ../../run_files/${mol}_eq6.cpt -p ../../run_files/topol.top -n ../../run_files/index.ndx -o ${mol}_npt -maxwarn 1 > grompp_npt.txt 2>&1
+$gmx mdrun -v -deffnm ${mol}_npt -ntmpi $ntmpi -ntomp $ntomp $opt > mdrun_npt.txt 2>&1
+```
+
+```
 gmx_gpu mdrun -gputasks 0001 -nb gpu -pme gpu -npme 1 -ntmpi 4 -ntomp 2 -s bench.tpr
 
 Reading file bench.tpr, VERSION 2019.4 (single precision)
