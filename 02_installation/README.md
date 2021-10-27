@@ -44,7 +44,7 @@ ${SINGULARITY} gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.
 ${SINGULARITY} gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -update gpu -s bench.tpr
 ```
 
-The above produces 461 ns/day. `md.log` shows that the GPU was correctly found:
+`md.log` shows that the GPU was correctly found:
 
 ```
 GPU info:
