@@ -1,6 +1,6 @@
 # Installation
 
-The installation procedure depends on the cluster.
+This repo provides sample install scripts for GROMACS. Most users will be able to use these scripts without making changes. Changes will be needed if additional GROMACS packages are required or if you wish to install a different version of the software.
 
 ## Choose a cluster to see the installation directions
 
