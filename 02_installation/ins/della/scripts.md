@@ -47,3 +47,58 @@ GPU info:
     Number of GPUs detected: 1
     #0: NVIDIA NVIDIA A100-PCIE-40GB, compute cap.: 8.0, ECC: yes, stat: compatible
 ```
+
+# Della (CPU)
+
+Della is good for single node jobs. You should not be running small jobs on Tiger.
+
+```bash
+$ ssh <YourNetID>@della.princeton.edu
+$ cd </path/to/your/software/directory>  # e.g., cd ~/software
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/della/della.sh
+# make modifications to della.sh if needed (e.g., choose a different version)
+$ bash della.sh | tee build.log
+```
+
+For single-node jobs:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=gmx           # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=8               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G per cpu-core is default)
+#SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=all          # send email when job begins, ends and fails
+#SBATCH --mail-user=<YourNetID>@princeton.edu
+#SBATCH --constraint=haswell|broadwell  # exclude ivy nodes
+
+module purge
+module load intel/19.0/64/19.0.5.281
+
+gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
+gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+```
+
+For multi-node MPI jobs:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=gmx           # create a short name for your job
+#SBATCH --nodes=2                # node count
+#SBATCH --ntasks-per-node=32     # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G per cpu-core is default)
+#SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --mail-type=all          # send email when job begins, ends and fails
+#SBATCH --mail-user=<YourNetID>@princeton.edu
+#SBATCH --constraint=haswell|broadwell  # exclude ivy nodes
+
+module purge
+module load intel/19.0/64/19.0.5.281
+module load intel-mpi/intel/2018.3/64
+
+gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
+srun mdrun_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+```
