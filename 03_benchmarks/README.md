@@ -165,6 +165,8 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | della-i16g1     |  15.3      |  113.0     |   1      |  1              |        4          |     1     |
 | della-i16g1     |   9.8      |  175.7     |   1      |  1              |        8          |     1     |
 | della-i16g1     |   9.6      |  180.9     |   1      |  1              |       16          |     1     |
+| della-i16g1     |   9.4      |  183.6     |   1      |  1              |       24          |     1     |
+| della-i16g1     |  10.4      |  166.9     |   1      |  1              |       32          |     1     |
 | adroit-h11g2     |   9.9      |  174.8    |   1      |  1              |      8          |     1     |
 | adroit-h11g2     |   9.6      |  180.1    |   1      |  1              |      16          |     1     |
 | adroit-h11g2     |   9.5      |  181.5    |   1      |  1              |      24          |     1     |
