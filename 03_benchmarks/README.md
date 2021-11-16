@@ -170,6 +170,7 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | adroit-h11g2     |   9.9      |  174.8    |   1      |  1              |      8          |     1     |
 | adroit-h11g2     |   9.6      |  180.1    |   1      |  1              |      16          |     1     |
 | adroit-h11g2     |   9.5      |  181.5    |   1      |  1              |      24          |     1     |
+| stellar-m01g1     |   20.1      |  86.2    |   1      |  1              |      4          |     1     |
 | stellar-m01g1     |   11.3      |  152.9    |   1      |  1              |      8          |     1     |
 | stellar-m01g1     |   11.4      |  147.3    |   1      |  1              |      16          |     1     |
 | stellar-m01g1     |   11.8      |  147.0    |   1      |  1              |      24          |     1     |
