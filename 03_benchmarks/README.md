@@ -184,10 +184,13 @@ stellar-vis1: Intel(R) Xeon(R) Gold 6242R CPU @ 3.10GHz
 ```
 $ ssh della-i16g1
 $ singularity pull docker://nvcr.io/hpc/gromacs:2021.3
-$ SINGULARITY="singularity run --nv -B ${PWD}:/host_pwd --pwd /host_pwd $HOME/software/gromacs_2021.3.sif"
+$ wget ftp://ftp.gromacs.org/pub/benchmarks/ADH_bench_systems.tar.gz
+$ tar zxvf ADH_bench_systems.tar.gz
+$ BCH=./ADH/adh_cubic
+$ SINGULARITY="singularity run --nv -B ${PWD}:/host_pwd --pwd /host_pwd ./gromacs_2021.3.sif"
+$ {SINGULARITY} gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
 $ env CUDA_VISIABLE_DEVICES="0" ${SINGULARITY} gmx mdrun -ntmpi 1 -ntomp 16 -pin on -update gpu -s bench.tpr
 ```
-
 
 ## ADH with cubic box (single and multi-node)
 
