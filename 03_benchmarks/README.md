@@ -186,7 +186,7 @@ stellar-vis1: Intel(R) Xeon(R) Gold 6242R CPU @ 3.10GHz
 
 ```
 $ ssh della-i16g1
-$ cd /scratch/gpfs/$HOME
+$ cd /scratch/gpfs/$USER
 $ singularity pull docker://nvcr.io/hpc/gromacs:2021.3
 $ wget ftp://ftp.gromacs.org/pub/benchmarks/ADH_bench_systems.tar.gz
 $ tar zxvf ADH_bench_systems.tar.gz
