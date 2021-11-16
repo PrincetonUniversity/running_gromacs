@@ -158,7 +158,7 @@ The benchmark data is below:
 
 Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 
-## ADH with cubic on della-i16g1
+## ADH with cubic (single GPU)
 
 | cluster      | wall time (s) | ns /day |  nodes   | ntasks-per-node |  cpus-per-task    | GPUs per node |
 |:-------------|-------------:|---------:|:--------:|:---------------:|:-----------------:|:-------------:|
@@ -167,14 +167,14 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | della-i16g1     |   9.6      |  180.9     |   1      |  1              |       16          |     1     |
 | adroit-h11g2     |   9.9      |  174.8    |   1      |  1              |      8          |     1     |
 | adroit-h11g2     |   9.6      |  180.1    |   1      |  1              |      16          |     1     |
-| stellar-vis1     |   12.4      |  139.6    |   1      |  1              |       8          |     1     |
-| stellar-vis1     |   11.9      |  145.5    |   1      |  1              |      16          |     1     |
 | stellar-m01g1     |   11.3      |  152.9    |   1      |  1              |      8          |     1     |
 | stellar-m01g1     |   11.4      |  147.3    |   1      |  1              |      16          |     1     |
+| stellar-vis1     |   12.4      |  139.6    |   1      |  1              |       8          |     1     |
+| stellar-vis1     |   11.9      |  145.5    |   1      |  1              |      16          |     1     |
 
 della-i16g1: AMD EPYC 7413 24-Core Processor (2.65 GHz)  
 adroit-h11g2: Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz  
-stellar-m01g1: AMD EPYC 7H12 64-Core Processor  (2.6 GHz)
+stellar-m01g1: AMD EPYC 7H12 64-Core Processor  (2.6 GHz)  
 stellar-vis1: Intel(R) Xeon(R) Gold 6242R CPU @ 3.10GHz  
 
 ```
