@@ -172,6 +172,11 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | stellar-m01g1     |   11.3      |  152.9    |   1      |  1              |      8          |     1     |
 | stellar-m01g1     |   11.4      |  147.3    |   1      |  1              |      16          |     1     |
 
+della-i16g1: AMD EPYC 7413 24-Core Processor (2.65 GHz)  
+adroit-h11g2: Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz  
+stellar-m01g1: AMD EPYC 7H12 64-Core Processor  (2.6 GHz)
+stellar-vis1: Intel(R) Xeon(R) Gold 6242R CPU @ 3.10GHz  
+
 ```
 $ ssh della-i16g1
 $ singularity pull docker://nvcr.io/hpc/gromacs:2021.3
