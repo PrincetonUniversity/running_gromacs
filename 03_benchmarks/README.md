@@ -165,8 +165,13 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | della-i16g1     |  15.3      |  113.0     |   1      |  1              |        4          |     1     |
 | della-i16g1     |   9.8      |  175.7     |   1      |  1              |        8          |     1     |
 | della-i16g1     |   9.6      |  180.9     |   1      |  1              |       16          |     1     |
+| stellar-vis1     |   12.4      |  139.6    |   1      |  1              |       8          |     1     |
+| stellar-vis1     |   11.9      |  145.5    |   1      |  1              |      16          |     1     |
+| stellar-m01g1     |   11.3      |  152.9    |   1      |  1              |      8          |     1     |
+| stellar-m01g1     |   11.4      |  147.3    |   1      |  1              |      16          |     1     |
 
 ```
+$ ssh della-i16g1
 $ singularity pull docker://nvcr.io/hpc/gromacs:2021.3
 $ SINGULARITY="singularity run --nv -B ${PWD}:/host_pwd --pwd /host_pwd $HOME/software/gromacs_2021.3.sif"
 $ env CUDA_VISIABLE_DEVICES="0" ${SINGULARITY} gmx mdrun -ntmpi 1 -ntomp 16 -pin on -update gpu -s bench.tpr
