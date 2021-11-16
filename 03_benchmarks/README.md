@@ -173,6 +173,8 @@ Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 | stellar-m01g1     |   11.8      |  147.0    |   1      |  1              |      24          |     1     |
 | stellar-vis1     |   12.4      |  139.6    |   1      |  1              |       8          |     1     |
 | stellar-vis1     |   11.9      |  145.5    |   1      |  1              |      16          |     1     |
+| stellar-vis1     |   15.3      |  113.2    |   1      |  1              |      24          |     1     |
+
 
 della-i16g1: AMD EPYC 7413 24-Core Processor (2.65 GHz)  
 adroit-h11g2: Intel(R) Xeon(R) Gold 6342 CPU @ 2.80GHz  
