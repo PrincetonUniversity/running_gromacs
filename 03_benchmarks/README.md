@@ -158,6 +158,21 @@ The benchmark data is below:
 
 Make sure you have a gmx and mdrun_mpi for tigerCpu and one set for tigerGpu.
 
+## ADH with cubic on della-i16g1
+
+| cluster      | wall time (s) | ns /day |  nodes   | ntasks-per-node |  cpus-per-task    | GPUs per node |
+|:-------------|-------------:|---------:|:--------:|:---------------:|:-----------------:|:-------------:|
+| della-i16g1     |  15.3      |  113.0     |   1      |  1              |        4          |     1     |
+| della-i16g1     |   9.8      |  175.7     |   1      |  1              |        8          |     1     |
+| della-i16g1     |   9.6      |  180.9     |   1      |  1              |       16          |     1     |
+
+```
+$ singularity pull docker://nvcr.io/hpc/gromacs:2021.3
+$ SINGULARITY="singularity run --nv -B ${PWD}:/host_pwd --pwd /host_pwd $HOME/software/gromacs_2021.3.sif"
+$ env CUDA_VISIABLE_DEVICES="0" ${SINGULARITY} gmx mdrun -ntmpi 1 -ntomp 16 -pin on -update gpu -s bench.tpr
+```
+
+
 ## ADH with cubic box (single and multi-node)
 
 | cluster      | wall time (s) | ns /day |  nodes   | ntasks-per-node |  cpus-per-task    | GPUs per node |
