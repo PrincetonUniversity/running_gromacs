@@ -32,7 +32,7 @@ module load openmpi/gcc/4.1.1/64
 
 BCH=./ADH/adh_cubic
 gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
-srun gmx_mpi mdrun -pin on -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+srun gmx_mpi mdrun -update gpu -pin on -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
 ## Poor Performance
