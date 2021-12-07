@@ -2,7 +2,7 @@
 
 Traverse is composed of 46 IBM POWER9 nodes with 4 NVIDIA V100 GPUs per node. Each node has two sockets each with a 16-core CPU. Each of the 16 cores has 4 hardware threads. Hence each node has 128 logical cpu-cores or hardware threads.
 
-![smt-core](http://3s81si1s5ygj3mzby34dq6qf-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/ibm-hot-chips-power9-smt4-core.jpg)
+Run the commands below to install Gromacs:
 
 ```
 $ ssh <YourNetID>@traverse.princeton.edu
@@ -11,28 +11,33 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash traverse_rhel8_2021.sh | tee build.log
 ```
 
-For single-node jobs:
+Below is a sample Slurm script:
 
 ```bash
+
 #!/bin/bash
 #SBATCH --job-name=gmx           # create a short name for your job
 #SBATCH --nodes=1                # node count
-#SBATCH --ntasks=1               # total number of tasks across all nodes
-#SBATCH --cpus-per-task=16       # cpu-cores per task (>1 if multi-threaded tasks)
-#SBATCH --threads-per-core=1     # setting to 1 turns off SMT (max value is 4)
-#SBATCH --mem=4G                 # memory per node (4G per cpu-core is default)
+#SBATCH --ntasks=8               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=32G                # memory per node (4G per cpu-core is default)
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1             # number of gpus per node
-#SBATCH --gpu-bind=closest       # use the closest gpu
 #SBATCH --mail-type=all          # send email when job begins, ends and fails
 #SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
-module load cudatoolkit/10.2
+module load cudatoolkit/11.4
+module load openmpi/gcc/4.1.1/64
 
-gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
-gmx mdrun -pin on -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+BCH=./ADH/adh_cubic
+gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+srun gmx_mpi mdrun -pin on -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
+
+## Poor Performance
+
+We have seen poor performance from Gromacs on Traverse as have others on the POWER9 systems. You are encouraged to take entire nodes by requesting 4 GPUs. This prevents job sharing which helps with the performance issues.
 
 ## Other
 
