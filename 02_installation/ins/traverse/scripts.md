@@ -7,36 +7,8 @@ Traverse is composed of 46 IBM POWER9 nodes with 4 NVIDIA V100 GPUs per node. Ea
 ```
 $ ssh <YourNetID>@traverse.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/ins/traverse/traverse.sh
-# make modifications to traverse.sh if needed (e.g., choose a different version)
-$ bash traverse.sh | tee build.log
-```
-
-Traverse will build successfully but it fails a test:
-
-```
-[ RUN      ] HardwareTopologyTest.NumaCacheSelfconsistency
-/home/jdh4/sw/gromacs-2019.4/src/gromacs/hardware/tests/hardwaretopology.cpp:179: Failure
-Expected: (n.memory) > (0), actual: 0 vs 0
-/home/jdh4/sw/gromacs-2019.4/src/gromacs/hardware/tests/hardwaretopology.cpp:179: Failure
-Expected: (n.memory) > (0), actual: 0 vs 0
-[  FAILED  ] HardwareTopologyTest.NumaCacheSelfconsistency (126 ms)
-[----------] 4 tests from HardwareTopologyTest (599 ms total)
-
-[----------] Global test environment tear-down
-[==========] 5 tests from 2 test cases ran. (603 ms total)
-[  PASSED  ] 4 tests.
-[  FAILED  ] 1 test, listed below:
-[  FAILED  ] HardwareTopologyTest.NumaCacheSelfconsistency
-
- 1 FAILED TEST
-```
-
-In the Gromacs output one will see:
-
-```
-NOTE: Affinity setting for 10/16 threads failed.
-NOTE: Thread affinity was not set.
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/traverse/traverse_rhel8_v2021.sh
+$ bash traverse_rhel8_2021.sh | tee build.log
 ```
 
 For single-node jobs:
@@ -62,7 +34,9 @@ gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 gmx mdrun -pin on -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
-The above Slurm leads to poor performance but the below script seems to work:
+## Other
+
+The content below is outdated and is only left here to provides ideas for current troubleshooting.
 
 ```
 #!/bin/bash
