@@ -20,7 +20,8 @@ The above procedure will create `gmx_gpu`. Below is a sample Slurm script:
 #SBATCH --mem=32G                # memory per node (4G per cpu-core is default)
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --gres=gpu:1             # number of gpus per node
-#SBATCH --reservation=85test
+#SBATCH --mail-type=all          # send email when job begins, ends and fails
+#SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
 module load cudatoolkit/11.4
@@ -92,7 +93,6 @@ For single-node jobs:
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=all          # send email when job begins, ends and fails
 #SBATCH --mail-user=<YourNetID>@princeton.edu
-#SBATCH --constraint=haswell|broadwell  # exclude ivy nodes
 
 module purge
 module load intel/19.0/64/19.0.5.281
@@ -113,7 +113,6 @@ For multi-node MPI jobs:
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --mail-type=all          # send email when job begins, ends and fails
 #SBATCH --mail-user=<YourNetID>@princeton.edu
-#SBATCH --constraint=haswell|broadwell  # exclude ivy nodes
 
 module purge
 module load intel/19.0/64/19.0.5.281
