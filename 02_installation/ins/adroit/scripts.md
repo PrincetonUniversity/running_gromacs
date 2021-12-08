@@ -36,7 +36,7 @@ One should find the optimal values of `ntasks` and `cpus-per-task`. For a job th
 
 # Adroit (CPU)
 
-Adroit is a small cluster so the directions here produce a single-node version:
+The directions below produce an MPI version of the code:
 
 ```bash
 $ ssh <NetID>@adroit.princeton.edu
