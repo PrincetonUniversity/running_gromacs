@@ -9,7 +9,27 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash della_gpu.sh | tee gmx.log
 ```
 
-The above procedure will create `gmx_gpu`.
+The above procedure will create `gmx_gpu`. Below is a sample Slurm script:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=gmx           # create a short name for your job
+#SBATCH --nodes=1                # node count
+#SBATCH --ntasks=8               # total number of tasks across all nodes
+#SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
+#SBATCH --mem=32G                # memory per node (4G per cpu-core is default)
+#SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --gres=gpu:1             # number of gpus per node
+#SBATCH --reservation=85test
+
+module purge
+module load cudatoolkit/11.4
+module load openmpi/gcc/4.1.0
+
+BCH=./ADH/adh_cubic
+gmx_gpu grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+srun gmx_gpu mdrun -update gpu -pin on -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+```
 
 #### NGC Container
 
