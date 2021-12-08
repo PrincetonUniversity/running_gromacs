@@ -3,7 +3,7 @@
 ```
 $ ssh <YourNetID>@stellar-intel.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/stellar/stellar_intel_gmx_gcc.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/stellar/stellar_intel_gmx_gcc.sh
 # make modifications to stellar_intel_gmx_gcc.sh if needed (e.g., choose a different version)
 $ bash stellar_intel_gmx_gcc.sh | tee build.log
 ```
