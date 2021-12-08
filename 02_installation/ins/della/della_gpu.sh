@@ -3,21 +3,23 @@
 #############################################################
 # set the version
 #############################################################
-version=2021.2
+version=2021.4
 
+#############################################################
+# you probably don't need to make changes below
+#############################################################
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-${version}.tar.gz
 tar zxvf gromacs-${version}.tar.gz
 cd gromacs-${version}
 mkdir build && cd build
 
 module purge
-module load cmake/3.18.2
 module load openmpi/gcc/4.1.0
-module load cudatoolkit/11.3
+module load cudatoolkit/11.4
 
 OPTFLAGS="-O3 -DNDEBUG"
 
-cmake .. -DCMAKE_BUILD_TYPE=Release \
+cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_C_COMPILER=mpicc \
 -DCMAKE_C_FLAGS_RELEASE="$OPTFLAGS" \
 -DCMAKE_CXX_COMPILER=mpic++ \
