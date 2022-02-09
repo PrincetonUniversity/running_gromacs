@@ -7,7 +7,7 @@ GPU benchmark input files from [this page](http://www.gromacs.org/GPU_accelerati
 
 ```
 $ wget ftp://ftp.gromacs.org/pub/benchmarks/rnase_bench_systems.tar.gz
-$ tar -zxvf rnase_bench_systems.tar.gz
+$ tar zxvf rnase_bench_systems.tar.gz
 $ ls -l
 total 1536
 -rw-r--r--. 1 jdh4 cses 1571724 Dec  8 11:36 rnase_bench_systems.tar.gz
