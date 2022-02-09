@@ -121,6 +121,7 @@ module purge
 module load intel/2021.1.2
 module load intel-mpi/intel/2021.1.1
 
-gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
+BCH=../rnase_cubic
+gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
 srun mdrun_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
