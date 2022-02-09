@@ -76,7 +76,7 @@ Della is good for single node jobs. You should not be running small jobs on Tige
 ```bash
 $ ssh <YourNetID>@della.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/master/02_installation/della/della.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/della/della.sh
 # make modifications to della.sh if needed (e.g., choose a different version)
 $ bash della.sh | tee build.log
 ```
@@ -95,7 +95,7 @@ For single-node jobs:
 #SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
-module load intel/19.0/64/19.0.5.281
+module load intel/2021.1.2
 
 gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
@@ -115,8 +115,8 @@ For multi-node MPI jobs:
 #SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
-module load intel/19.0/64/19.0.5.281
-module load intel-mpi/intel/2018.3/64
+module load intel/2021.1.2
+module load intel-mpi/intel/2021.1.1
 
 gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
 srun mdrun_mpi -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
