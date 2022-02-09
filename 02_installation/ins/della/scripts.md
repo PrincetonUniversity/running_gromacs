@@ -91,13 +91,12 @@ For single-node jobs:
 #SBATCH --cpus-per-task=8        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G per cpu-core is default)
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
-#SBATCH --mail-type=all          # send email when job begins, ends and fails
-#SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
 module load intel/2021.1.2
 
-gmx grompp -f pme_verlet.mdp -c conf.gro -p topol.top -o bench.tpr
+BCH=../rnase_cubic
+gmx grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
 gmx mdrun -ntmpi $SLURM_NTASKS -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
