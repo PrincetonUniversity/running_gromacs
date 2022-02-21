@@ -117,7 +117,7 @@ For multi-node MPI jobs:
 #SBATCH --mail-type=begin        # send email when job begins
 #SBATCH --mail-type=end          # send email when job ends
 #SBATCH --mail-user=<YourNetID>@princeton.edu
-#SBATCH --constraint=cascade,skylake
+#SBATCH --constraint=cascade|skylake
 
 module purge
 module load intel/2021.1.2
