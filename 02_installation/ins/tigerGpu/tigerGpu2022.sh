@@ -23,7 +23,7 @@ module load rh/devtoolset/9
 module load cudatoolkit/11.3
 
 # gromacs will add -march=core-avx2 to the next line
-OPTFLAGS="-Ofast -mtune=broadwell -DNDEBUG"
+OPTFLAGS=""
 
 cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_C_COMPILER=gcc -DCMAKE_C_FLAGS_RELEASE="$OPTFLAGS" \
