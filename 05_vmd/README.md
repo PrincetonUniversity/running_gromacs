@@ -17,6 +17,7 @@ The following procedure can be used to install VMD on tigressdata:
 ```
 $ ssh -X <YourNetID>@tigressdata.princeton.edu
 $ cd software  # or another directory
+# maybe use version vmd-1.9.4a47 instead of below
 $ wget https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/files/alpha/vmd-1.9.4a38.bin.LINUXAMD64-CUDA9-OptiX510-OSPRay170.opengl.tar.gz
 $ tar zxvf vmd-1.9.4a38.bin.LINUXAMD64-CUDA9-OptiX510-OSPRay170.opengl.tar.gz
 $ cd vmd-1.9.4a38
