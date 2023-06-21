@@ -10,26 +10,43 @@ clusters (e.g., tiger).
 
 It is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
 
-## Installing VMD on Tigressdata
+## Installing VMD on Della
 
-The following procedure can be used to install VMD on tigressdata:
+The following procedure can be used to install VMD on della:
 
 ```
-$ ssh -X <YourNetID>@tigressdata.princeton.edu
+$ ssh <YourNetID>@della-gpu.princeton.edu
 $ cd software  # or another directory
-# maybe use version vmd-1.9.4a47 instead of below
-$ wget https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/files/alpha/vmd-1.9.4a38.bin.LINUXAMD64-CUDA9-OptiX510-OSPRay170.opengl.tar.gz
-$ tar zxvf vmd-1.9.4a38.bin.LINUXAMD64-CUDA9-OptiX510-OSPRay170.opengl.tar.gz
-$ cd vmd-1.9.4a38
-# read the README file for the quick install directions then
-# modify the configure file with something like
+$ wget https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/files/alpha/vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
+$ tar zxvf vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
+$ cd vmd-1.9.4a57
+```
+
+Read the README file for the quick install directions then modify the `configure` file with something like:
+
+```
 $install_bin_dir="/home/<YourNetID>/software/vmd/bin";
 $install_library_dir="/home/<YourNetID>/software/vmd/lib/$install_name";
+```
+
+Continue by running these commands:
+
+$ ./configure
 $ cd src
 $ make install
-# launch VMD with the next command
-$ vglrun /home/<YourNetID>/software/vmd/bin/vmd
 # you coud add the above to your PATH in .bashrc
+```
+
+Use MyDella to launch a graphical desktop. Choose "Interactive Apps" then "Desktop of Stellar Vis node". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
+
+```
+$ /home/<YourNetID>/software/vmd/bin/vmd
+```
+
+On tigressdata use:
+
+```
+$ vglrun /home/<YourNetID>/software/vmd/bin/vmd
 ```
 
 Note that `vglrun` is not necessary but on Tigressdata it allows for OpenGL rendering on the P100 GPU. On cluster head nodes it should be omitted.
