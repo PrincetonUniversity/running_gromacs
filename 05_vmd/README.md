@@ -1,14 +1,6 @@
 # VMD on the HPC Clusters
 
-For intensive visualization work you can install [VMD](https://www.ks.uiuc.edu/Research/vmd/) in your `/home` directory on tigressdata. The `/scratch/gpfs` filesystems for each cluster and `/tigress` are
-accessible from tigressdata. For example, for Perseus use the path: `/perseus/scratch/gpfs/<YourNetID>`.
-
-For just doing quick checks of system configurations you can also install it in your `/home` directory on one of the
-clusters (e.g., tiger).
-
-## Working with Graphics
-
-It is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
+For intensive visualization work you can install [VMD](https://www.ks.uiuc.edu/Research/vmd/) in your `/home` directory.
 
 ## Installing VMD on Della
 
@@ -31,13 +23,14 @@ $install_library_dir="/home/<YourNetID>/software/vmd/lib/$install_name";
 
 Continue by running these commands:
 
+```
 $ ./configure
 $ cd src
 $ make install
 # you coud add the above to your PATH in .bashrc
 ```
 
-Use MyDella to launch a graphical desktop. Choose "Interactive Apps" then "Desktop of Stellar Vis node". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
+Use [MyDella](https://mydella.princeton.edu/) to launch a graphical desktop. Choose "Interactive Apps" then "Desktop of Stellar Vis node". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
 
 ```
 $ /home/<YourNetID>/software/vmd/bin/vmd
@@ -70,6 +63,10 @@ If you run VMD on a machine other than tigressdata then you should omit vglrun:
 ```
 $ vmd <myfile.gro>
 ```
+
+### Working with Graphics
+
+You can use [MyDella](https://mydella.princeton.edu/) or it is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
 
 ### More on TurboVNC
 
