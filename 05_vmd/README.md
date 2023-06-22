@@ -66,11 +66,11 @@ $ vmd <myfile.gro>
 
 ### Working with Graphics
 
-You can use [MyDella](https://mydella.princeton.edu/) or it is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
+You should use [MyDella](https://mydella.princeton.edu/) or it is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
 
 ### More on TurboVNC
 
-To use VMD on the head node of a cluster, first connect to `tigressdata.princeton.edu` using [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) and then `ssh -X` to the desired cluster from tigressdata in a terminal. It will take you a few minutes to install and configure TurboVNC but you will find that the performance is excellent compared to X11 forwarding approaches.
+To use VMD on the head node of a cluster (please use MyDella/MyStellar/MyAdroit instead), first connect to `tigressdata.princeton.edu` using [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) and then `ssh -X` to the desired cluster from tigressdata in a terminal. It will take you a few minutes to install and configure TurboVNC but you will find that the performance is excellent compared to X11 forwarding approaches.
 
 Within TurboVNC, use these keyboard sequences for copy and paste:
 
