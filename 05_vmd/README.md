@@ -4,17 +4,17 @@ For intensive visualization work you can install [VMD](https://www.ks.uiuc.edu/R
 
 ## Installing VMD on Della
 
-The following procedure can be used to install VMD on della:
+The following procedure can be used to install VMD on Della (and the other clusters):
 
 ```
-$ ssh <YourNetID>@della-gpu.princeton.edu
+$ ssh <YourNetID>@della-vis1.princeton.edu
 $ cd software  # or another directory
 $ wget https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/files/alpha/vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
 $ tar zxvf vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
 $ cd vmd-1.9.4a57
 ```
 
-Read the README file for the quick install directions then modify the `configure` file with something like:
+Read the README file for the quick install directions then modify the `configure` file using a text editor (e.g., vim, emacs) with something like (replace <YourNetID> with your NetID):
 
 ```
 $install_bin_dir="/home/<YourNetID>/software/vmd/bin";
@@ -27,10 +27,10 @@ Continue by running these commands:
 $ ./configure
 $ cd src
 $ make install
-# you coud add the above to your PATH in .bashrc
+# see "Updating your PATH" below
 ```
 
-Use [MyDella](https://mydella.princeton.edu/) to launch a graphical desktop. Choose "Interactive Apps" then "Desktop of Stellar Vis node". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
+Use [MyDella](https://mydella.princeton.edu/) (or [MyStellar](https://mystellar.princeton.edu/) or [MyAdroit](https://myadroit.princeton.edu/)) to launch a graphical desktop by choosing "Interactive Apps" then "Desktop on Della Vis Nodes". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
 
 ```
 $ /home/<YourNetID>/software/vmd/bin/vmd
