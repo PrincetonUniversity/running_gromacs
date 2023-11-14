@@ -3,7 +3,7 @@
 #############################################################
 # set the version
 #############################################################
-version=2021.4
+version=2023.3
 
 #############################################################
 # you probably don't need to make changes below
@@ -14,8 +14,9 @@ cd gromacs-${version}
 mkdir build && cd build
 
 module purge
-module load openmpi/gcc/4.1.0
-module load cudatoolkit/11.4
+module load gcc-toolset/12
+module load openmpi/gcc/4.1.2
+module load cudatoolkit/12.2
 
 OPTFLAGS="-O3 -DNDEBUG"
 
@@ -34,6 +35,6 @@ cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DGMX_DEFAULT_SUFFIX=OFF -DGMX_BINARY_SUFFIX=_gpu -DGMX_LIBS_SUFFIX=_gpu \
 -DGMX_COOL_QUOTES=OFF
 
-make -j 32
+make -j 8
 make check
 make install
