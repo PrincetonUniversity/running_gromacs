@@ -1,4 +1,4 @@
 # Tips and Tricks and Pitfalls to Avoid
 
-See the presentation file above by G. Zerze.
+See the presentation file above by G. Zerze from 2019.
 
