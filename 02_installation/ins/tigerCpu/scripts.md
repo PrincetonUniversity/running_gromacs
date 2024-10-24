@@ -2,6 +2,8 @@
 
 ### GCC
 
+The directions below use the GCC compiler and Open MPI library:
+
 ```
 #!/bin/bash
 #############################################################
@@ -64,7 +66,7 @@ srun gmx_mpi mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 
 ### Intel
 
-The directions below use the Intel compilers and Intel MPI library:
+The directions below use the Intel compilers and Intel MPI library. By choice, an executable for single-node jobs is built in addition to one for multinode jobs.
 
 ```
 $ ssh <NetID>@tiger3.princeton.edu
