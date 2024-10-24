@@ -9,5 +9,5 @@ This repo provides sample install scripts for GROMACS. Most users will be able t
 * [Della-GPU](ins/della/scripts.md#della-gpu)
 * [Della (CPU)](ins/della/scripts.md#della-cpu)
 * [Stellar](ins/stellar/scripts.md)
-* [TigerCPU](ins/tigerCpu/scripts.md)
+* [Tiger (CPU)](ins/tigerCpu/scripts.md)
 * [Traverse](ins/traverse/scripts.md)
