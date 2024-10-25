@@ -1,6 +1,6 @@
 # Stellar-Intel
 
-### Intel
+### Intel Compiler with Intel MPI
 
 ```
 $ ssh <YourNetID>@stellar-intel.princeton.edu
@@ -31,7 +31,7 @@ gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o benc
 srun gmx_mpi mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
 
-### GCC
+### GCC Compiler with Open MPI
 
 ```
 $ ssh <YourNetID>@stellar-intel.princeton.edu
