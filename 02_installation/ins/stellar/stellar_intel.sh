@@ -34,6 +34,8 @@ cmake3 .. -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
 -DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
 
-make
+make -j 16
+unset I_MPI_HYDRA_BOOTSTRAP
+unset I_MPI_PMI_LIBRARY
 make check
 make install
