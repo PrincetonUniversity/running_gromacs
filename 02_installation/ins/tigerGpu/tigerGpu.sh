@@ -1,66 +1,41 @@
 #!/bin/bash
+
 #############################################################
 # set the version
 #############################################################
-version=2019.6
+version=2024.3
 
 #############################################################
-# you probably don't need to change anything below this line
+# you probably don't need to make changes below
 #############################################################
-
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-${version}.tar.gz
 tar zxvf gromacs-${version}.tar.gz
 cd gromacs-${version}
-mkdir build_stage1
-cd build_stage1
-
-#############################################################
-# build gmx (stage 1)
-#############################################################
+mkdir build && cd build
 
 module purge
-module load intel/19.0/64/19.0.5.281
-module load cudatoolkit/10.2
-module load rh/devtoolset/7
+module load openmpi/gcc/4.1.6
+module load cudatoolkit/12.6
 
-# gromacs will add -march=core-avx2 to the next line
-OPTFLAGS="-Ofast -mtune=broadwell -DNDEBUG"
+OPTFLAGS="-O3 -DNDEBUG"
 
 cmake3 .. -DCMAKE_BUILD_TYPE=Release \
--DCMAKE_C_COMPILER=icc -DCMAKE_C_FLAGS_RELEASE="$OPTFLAGS" \
--DCMAKE_CXX_COMPILER=icpc -DCMAKE_CXX_FLAGS_RELEASE="$OPTFLAGS" \
--DGMX_BUILD_MDRUN_ONLY=OFF -DGMX_MPI=OFF -DGMX_OPENMP=ON \
--DGMX_SIMD=AVX2_256 -DGMX_DOUBLE=OFF \
--DGMX_FFT_LIBRARY=mkl \
--DGMX_GPU=ON -DGMX_CUDA_TARGET_SM=60 \
+-DCMAKE_C_COMPILER=mpicc \
+-DCMAKE_C_FLAGS_RELEASE="$OPTFLAGS" \
+-DCMAKE_CXX_COMPILER=mpic++ \
+-DCMAKE_CXX_FLAGS_RELEASE="$OPTFLAGS" \
+-DGMX_BUILD_OWN_FFTW=ON \
+-DGMX_MPI=ON \
+-DGMX_OPENMP=ON \
+-DGMX_SIMD=AVX_512 \
+-DGMX_DOUBLE=OFF \
+-DGMX_GPU=CUDA \
+-DGMX_CUDA_TARGET_SM=90 \
 -DCMAKE_INSTALL_PREFIX=$HOME/.local \
--DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
+-DREGRESSIONTEST_DOWNLOAD=ON \
+-DGMX_DEFAULT_SUFFIX=OFF -DGMX_BINARY_SUFFIX=_gpu -DGMX_LIBS_SUFFIX=_gpu \
+-DGMX_COOL_QUOTES=OFF
 
-make -j 4
+make -j 8
 make check
-make install
-
-#############################################################
-# build mdrun_mpi (stage 2)
-#############################################################
-
-cd ..
-mkdir build_stage2
-cd build_stage2
-
-module load intel-mpi/intel/2019.5/64
-
-cmake3 .. -DCMAKE_BUILD_TYPE=Release \
--DCMAKE_C_COMPILER=icc -DCMAKE_C_FLAGS_RELEASE="$OPTFLAGS" \
--DCMAKE_CXX_COMPILER=icpc -DCMAKE_CXX_FLAGS_RELEASE="$OPTFLAGS" \
--DGMX_BUILD_MDRUN_ONLY=ON -DGMX_MPI=ON -DGMX_OPENMP=ON \
--DGMX_SIMD=AVX2_256 -DGMX_DOUBLE=OFF \
--DGMX_FFT_LIBRARY=mkl \
--DGMX_GPU=ON -DGMX_CUDA_TARGET_SM=60 \
--DCMAKE_INSTALL_PREFIX=$HOME/.local \
--DGMX_COOL_QUOTES=OFF -DREGRESSIONTEST_DOWNLOAD=ON
-
-make -j 4
-source ../build_stage1/scripts/GMXRC
-tests/regressiontests-${version}/gmxtest.pl all
 make install
