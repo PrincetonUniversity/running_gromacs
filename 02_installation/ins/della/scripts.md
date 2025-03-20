@@ -1,4 +1,16 @@
-# Della-GPU
+
+# Della-GPU (OS Version 9)
+
+The GPU nodes on Della have range of instruction sets. Here we choose AVX2 for compatibility. Below is a build procedure:
+
+```
+$ ssh <YourNetID>@della9.princeton.edu
+$ cd software  # or another directory
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/della/della9_gpu_avx2.sh
+$ bash della9_gpu_avx2.sh | tee gmx.log
+```
+
+# Della-GPU (OS Version 8)
 
 The GPU nodes on Della have AMD processors with AVX2 as the highest instruction set. The system version of GCC is 8.3.1. Below is a build procedure:
 
