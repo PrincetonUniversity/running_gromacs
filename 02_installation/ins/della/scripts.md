@@ -10,7 +10,7 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash della9_gpu_avx2.sh | tee gmx.log
 ```
 
-The above produces an executable.
+The above produces an executable called `gmx_d9_gpu`.
 
 For additional performance, one might try with cuFFTMp, using AVX-512 and then only running on the Intel CPUs with 80 GB A100's, and using openmpi/cuda-12.6/gcc/4.1.6 for Open MPI.
 
