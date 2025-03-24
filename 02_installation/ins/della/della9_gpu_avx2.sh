@@ -14,12 +14,14 @@ cd gromacs-${version}
 mkdir build && cd build
 
 module purge
-module load gcc-toolset/14
+module load cmake/3.30.8    # DO NOT INCLUDE IN SLURM SCRIPT
+module load gcc-toolset/14  # DO NOT INCLUDE IN SLURM SCRIPT
 module load openmpi/gcc/4.1.6
 module load cudatoolkit/12.8
 
 OPTFLAGS="-O3 -DNDEBUG"
 
+which cmake
 which nvcc
 which gcc
 which mpicc
