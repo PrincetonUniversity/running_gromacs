@@ -10,6 +10,10 @@ $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/mai
 $ bash della9_gpu_avx2.sh | tee gmx.log
 ```
 
+The above produces an executable.
+
+For additional performance, one might try with cuFFTMp, using AVX-512 and then only running on the Intel CPUs with 80 GB A100's, and using openmpi/cuda-12.6/gcc/4.1.6 for Open MPI.
+
 # Della-GPU (OS Version 8)
 
 The GPU nodes on Della have AMD processors with AVX2 as the highest instruction set. The system version of GCC is 8.3.1. Below is a build procedure:
