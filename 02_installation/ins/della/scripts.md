@@ -85,14 +85,14 @@ GPU info:
     #0: NVIDIA NVIDIA A100-PCIE-40GB, compute cap.: 8.0, ECC: yes, stat: compatible
 ```
 
-# Della (CPU)
+# Della (CPU for OS Version 9)
 
-Della is good for single node jobs. You should not be running small jobs on Tiger.
+A CPU-only build for the AMD nodes:
 
 ```bash
 $ ssh <YourNetID>@della.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
-$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/della/della.sh
+$ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/della/della9_cpu_amd.sh
 # make modifications to della.sh if needed (e.g., choose a different version)
 $ bash della.sh | tee build.log
 ```
@@ -103,20 +103,24 @@ Below is a sample Slurm script:
 #!/bin/bash
 #SBATCH --job-name=gmx           # create a short name for your job
 #SBATCH --nodes=1                # node count
-#SBATCH --ntasks=4               # total number of tasks across all nodes
+#SBATCH --ntasks=8               # total number of tasks across all nodes
 #SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks)
 #SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G per cpu-core is default)
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
+#SBATCH --constraint=amd
 #SBATCH --mail-type=begin        # send email when job begins
 #SBATCH --mail-type=end          # send email when job ends
 #SBATCH --mail-user=<YourNetID>@princeton.edu
-#SBATCH --exclude=della-r4c[1-4]n[1-16],della-r1c[3,4]n[1-16]
 
 module purge
-module load intel-mkl/2022.2.0
-module load openmpi/gcc/4.1.2
+module load gcc-toolset/14
+module load aocc/5.0.0
+module load aocl/aocc/5.0.0
+module load openmpi/aocc-5.0.0/4.1.6
 
 BCH=rnase_cubic
-gmx_mpi grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
-srun gmx_mpi mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
+gmx_amd_cpu grompp -f $BCH/pme_verlet.mdp -c $BCH/conf.gro -p $BCH/topol.top -o bench.tpr
+srun gmx_amd_cpu mdrun -ntomp $SLURM_CPUS_PER_TASK -s bench.tpr
 ```
+
+There is also a [GCC build](della9_cpu_gcc.sh) but the above showed a performance advantage.
