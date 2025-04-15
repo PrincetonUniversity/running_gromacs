@@ -93,8 +93,8 @@ A CPU-only build for the AMD nodes:
 $ ssh <YourNetID>@della.princeton.edu
 $ cd </path/to/your/software/directory>  # e.g., cd ~/software
 $ wget https://raw.githubusercontent.com/PrincetonUniversity/running_gromacs/main/02_installation/ins/della/della9_cpu_amd.sh
-# make modifications to della.sh if needed (e.g., choose a different version)
-$ bash della.sh | tee build.log
+# make modifications to della_cpu_amd.sh if needed (e.g., choose a different version)
+$ bash della_cpu_amd.sh | tee build.log
 ```
 
 Below is a sample Slurm script:
