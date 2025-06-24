@@ -9,9 +9,9 @@ The following procedure can be used to install VMD on Della (and the other clust
 ```
 $ ssh <YourNetID>@della-vis1.princeton.edu
 $ cd software  # or another directory
-$ wget https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/files/alpha/vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
-$ tar zxvf vmd-1.9.4a57.bin.LINUXAMD64-CUDA102-OptiX650-OSPRay185.opengl.tar.gz
-$ cd vmd-1.9.4a57
+$ wget https://www.ks.uiuc.edu/Research/vmd/alpha/vmd-2.0.0a5.bin.LINUXAMD64.tar.gz
+$ tar zxvf vmd-2.0.0a5.bin.LINUXAMD64.tar.gz 
+$ cd vmd-2.0.0a5
 ```
 
 Read the README file for the quick install directions then modify the `configure` file using a text editor (e.g., vim, emacs) with something like (replace <YourNetID> with your NetID):
@@ -25,24 +25,22 @@ Continue by running these commands:
 
 ```
 $ ./configure
+using configure.options: LINUXAMD64 OPENGL OPENGLPBUFFER OPTIXRTRT FLTK TK ACTC CUDA CXX11 IMD LIBSBALL XINERAMA XINPUT LIBOPTIX LIBTACHYON LIBPNG ZLIB VRPN NETCDF COLVARS TCL PYTHON PTHREADS NUMPY SILENT
 $ cd src
 $ make install
+Make sure /home/<YourNetID>/software/vmd/bin/vmd is in your path.
+VMD installation complete.  Enjoy!
+
 # see "Updating your PATH" below
 ```
 
-Use [MyDella](https://mydella.princeton.edu/) (or [MyStellar](https://mystellar.princeton.edu/) or [MyAdroit](https://myadroit.princeton.edu/)) to launch a graphical desktop by choosing "Interactive Apps" then "Desktop on Della Vis Nodes". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
+Use [MyDella](https://mydella.princeton.edu/) (or [MyTiger](https://mytiger.princeton.edu) or [MyStellar](https://mystellar.princeton.edu/) or [MyAdroit](https://myadroit.princeton.edu/)) to launch a graphical desktop by choosing "Interactive Apps" then "Desktop on Della Vis Nodes". When the session starts, click on the black terminal icon next to FireFox to launch a terminal. In the terminal, launch `vmd` with:
 
 ```
 $ /home/<YourNetID>/software/vmd/bin/vmd
 ```
 
-On tigressdata use:
-
-```
-$ vglrun /home/<YourNetID>/software/vmd/bin/vmd
-```
-
-Note that `vglrun` is not necessary but on Tigressdata it allows for OpenGL rendering on the P100 GPU. On cluster head nodes it should be omitted.
+In some cases you may benefit from running `vmd` under `vglrun`.
 
 ### Updating your PATH
 
@@ -58,23 +56,8 @@ Then add this line:
 export PATH=$PATH:</path/to/vmd>  # e.g., export PATH=$PATH:/home/<YourNetID>/software/vmd/bin
 ```
 
-If you run VMD on a machine other than tigressdata then you should omit vglrun:
+After creating a new shell or sourcing your mofified `.bashrc` file, you can use `vmd`:
 
 ```
 $ vmd <myfile.gro>
-```
-
-### Working with Graphics
-
-You should use [MyDella](https://mydella.princeton.edu/) or it is recommended that you install [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) on your local machine (e.g., laptop) to work with VMD. If you decide to rely on X11 forwarding then make sure you are aware of [this page](https://researchcomputing.princeton.edu/sshX).
-
-### More on TurboVNC
-
-To use VMD on the head node of a cluster (please use MyDella/MyStellar/MyAdroit instead), first connect to `tigressdata.princeton.edu` using [TurboVNC](https://researchcomputing.princeton.edu/turbovnc) and then `ssh -X` to the desired cluster from tigressdata in a terminal. It will take you a few minutes to install and configure TurboVNC but you will find that the performance is excellent compared to X11 forwarding approaches.
-
-Within TurboVNC, use these keyboard sequences for copy and paste:
-
-```
-Ctrl + Shift + C
-Ctrl + Shift + V
 ```
