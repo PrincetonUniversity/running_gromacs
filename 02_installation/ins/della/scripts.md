@@ -71,8 +71,7 @@ Below is a sample Slurm script:
 #SBATCH --mem-per-cpu=4G         # memory per cpu-core (4G per cpu-core is default)
 #SBATCH --time=01:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --constraint=amd
-#SBATCH --mail-type=begin        # send email when job begins
-#SBATCH --mail-type=end          # send email when job ends
+#SBATCH --mail-type=all          # receive email notifictions
 #SBATCH --mail-user=<YourNetID>@princeton.edu
 
 module purge
