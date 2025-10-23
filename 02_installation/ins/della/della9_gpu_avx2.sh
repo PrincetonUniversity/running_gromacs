@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# build GMX for A100 GPUs with MPI
+
 #############################################################
 # set the version
 #############################################################
-version=2025.1
+version=2025.3
 
 #############################################################
 # you probably don't need to make changes below
@@ -17,7 +19,7 @@ module purge
 module load cmake/3.30.8    # DO NOT INCLUDE IN SLURM SCRIPT
 module load gcc-toolset/14  # DO NOT INCLUDE IN SLURM SCRIPT
 module load openmpi/gcc/4.1.6
-module load cudatoolkit/12.8
+module load cudatoolkit/12.9
 
 OPTFLAGS="-O3 -DNDEBUG"
 
